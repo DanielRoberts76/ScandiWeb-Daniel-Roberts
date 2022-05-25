@@ -19,37 +19,38 @@ export const GET_PRODUCTS = gql`
   }
 `;
 
-var selectedCategory = "tech";
-
 const Product = ({ category }) => {
+  var selectedCategory = "tech";
+  function populateCategory(selectedCategory) {
+    category = selectedCategory;
+    refetch({
+      category: {
+        title: selectedCategory,
+      },
+      selectedCategory: selectedCategory,
+    });
+  }
+
   const { loading, error, data, refetch } = useQuery(GET_PRODUCTS, {
     variables: { selectedCategory },
   });
 
   return (
-    <Layout grid>
+    <Layout grid category={selectedCategory}>
       <CategoryContainer>
         <CategoryButton
-          onClick={() =>
-            refetch({
-              category: {
-                title: "tech",
-              },
-            })
-          }
-        >
-          TECH
-        </CategoryButton>
-        <CategoryButton
-          onClick={() =>
-            refetch({
-              category: {
-                title: "clothes",
-              },
-            })
-          }
+          onClick={() => {
+            populateCategory("clothes");
+          }}
         >
           CLOTHES
+        </CategoryButton>
+        <CategoryButton
+          onClick={() => {
+            populateCategory("tech");
+          }}
+        >
+          TECH
         </CategoryButton>
       </CategoryContainer>
       <QueryResult error={error} loading={loading} data={data}>
@@ -69,6 +70,7 @@ const CategoryButton = styled.div({
   flexWrap: "wrap",
   backgroundColor: "lightblue",
   maxWidth: 100,
+  maxHeight: 50,
 });
 
 const CategoryContainer = styled.div({

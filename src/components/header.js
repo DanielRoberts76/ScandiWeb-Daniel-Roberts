@@ -7,16 +7,14 @@ const Header = ({ children }) => {
   return (
     <HeaderBar>
       <Container>
-        <CategoryContainer>
-          <CategoryButton>CLOTHES</CategoryButton>
-          <CategoryButton>TECH</CategoryButton>
-        </CategoryContainer>
+        <CategoryContainer></CategoryContainer>
         <LogoContainer>
           <Logo src={logo} />
         </LogoContainer>
 
         {children}
       </Container>
+      <button>Beep</button>
     </HeaderBar>
   );
 };
