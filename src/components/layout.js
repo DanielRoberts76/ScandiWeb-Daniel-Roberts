@@ -2,10 +2,8 @@ import React from "react";
 import Header from "./header";
 import styled from "@emotion/styled";
 import { widths, unit } from "./styles";
-import { ClassNames } from "@emotion/react";
 
 const Layout = ({ fullWidth, children, grid, category }) => {
-  console.log("category", category);
   return (
     <>
       <Header></Header>
@@ -36,4 +34,8 @@ const CategoryName = styled.div((props) => ({
   flex: 1,
   width: "100%",
   alignSelf: "left",
+  marginLeft: "15%;",
+  marginTop: "5%",
+  marginBottom: "5%",
+  fontSize: 32,
 }));
