@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import logo from "../assets/a_logo.png";
 import CartIcon2 from "../assets/CartIcon2.png";
 import dollarsign from "../assets/dollarsign.png";
-import ShowCartModal from "./cart-modal";
 
 class Header extends Component {
   constructor(props) {
@@ -12,21 +11,25 @@ class Header extends Component {
     this.state = {};
   }
 
+  populateCategory = (event) => {
+    this.props.changeSelectedCategory(event);
+  };
+
   render() {
     return (
       <HeaderBar>
         <CategoryContainer>
           <CategoryButton
-          // onClick={() => {
-          //   populateCategory("clothes");
-          // }}
+            onClick={() => {
+              this.populateCategory("clothes");
+            }}
           >
             CLOTHES
           </CategoryButton>
           <CategoryButton
-          // onClick={() => {
-          //   populateCategory("tech");
-          // }}
+            onClick={() => {
+              this.populateCategory("tech");
+            }}
           >
             TECH
           </CategoryButton>
