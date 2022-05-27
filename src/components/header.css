@@ -1,0 +1,9 @@
+HeaderBar {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px 25px",
+    minHeight: 80,
+    backgroundColor: "white",
+  };

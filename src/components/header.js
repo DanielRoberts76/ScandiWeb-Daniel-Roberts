@@ -1,28 +1,50 @@
-import React from "react";
+import React, { Component } from "react";
 import { widths } from "./styles";
 import styled from "@emotion/styled";
 import logo from "../assets/a_logo.png";
 import CartIcon2 from "../assets/CartIcon2.png";
 import dollarsign from "../assets/dollarsign.png";
+import ShowCartModal from "./cart-modal";
 
-const Header = ({ children }) => {
-  return (
-    <HeaderBar>
-      <Container>
-        <CategoryContainer></CategoryContainer>
-        <LogoContainer>
-          <Logo src={logo} />
-        </LogoContainer>
+class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-        {children}
-      </Container>
-      <ActionBar>
-        <CartModal src={CartIcon2} />
-        <CurrencyModal src={dollarsign} />
-      </ActionBar>
-    </HeaderBar>
-  );
-};
+  render() {
+    return (
+      <HeaderBar>
+        <CategoryContainer>
+          <CategoryButton
+          // onClick={() => {
+          //   populateCategory("clothes");
+          // }}
+          >
+            CLOTHES
+          </CategoryButton>
+          <CategoryButton
+          // onClick={() => {
+          //   populateCategory("tech");
+          // }}
+          >
+            TECH
+          </CategoryButton>
+        </CategoryContainer>
+        <Container>
+          <CategoryContainer></CategoryContainer>
+          <LogoContainer>
+            <Logo src={logo} />
+          </LogoContainer>
+        </Container>
+        <ActionBar>
+          <CartButton src={CartIcon2} />
+          <CurrencyButton src={dollarsign} />
+        </ActionBar>
+      </HeaderBar>
+    );
+  }
+}
 
 export default Header;
 
@@ -40,11 +62,6 @@ const Container = styled.div({
   flex: 1,
   flexDirection: "row",
   flexWrap: "wrap",
-});
-
-const CategoryContainer = styled.div({
-  display: "flex",
-  flex: 1,
 });
 
 const LogoContainer = styled.div({
@@ -69,12 +86,26 @@ const ActionBar = styled.div({
   alignSelf: "right",
 });
 
-const CartModal = styled.img({
+const CartButton = styled.img({
   height: 40,
   width: 40,
 });
 
-const CurrencyModal = styled.img({
+const CurrencyButton = styled.img({
   height: 40,
   width: 40,
+});
+
+const CategoryButton = styled.div({
+  flex: 1,
+  flexDirection: "row",
+  flexWrap: "wrap",
+  backgroundColor: "lightblue",
+  maxWidth: 100,
+  maxHeight: 50,
+});
+
+const CategoryContainer = styled.div({
+  display: "flex",
+  flex: 1,
 });

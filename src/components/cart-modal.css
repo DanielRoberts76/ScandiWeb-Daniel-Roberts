@@ -1,0 +1,5 @@
+.modalBackground {
+  display: flex;
+  background: "black";
+  align-self: right;
+}
