@@ -1,19 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 import Header from "./header";
 import styled from "@emotion/styled";
 import { widths, unit } from "./styles";
 
-const Layout = ({ fullWidth, children, grid, category }) => {
-  return (
-    <>
-      <Header></Header>
-      <CategoryName>{category}</CategoryName>
-      <PageContainer fullWidth={fullWidth} grid={grid}>
-        {children}
-      </PageContainer>
-    </>
-  );
-};
+class Layout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.submitForm = this.submitForm.bind(this);
+    this.category = "test";
+  }
+
+  submitForm(values) {
+    this.setState({ values });
+  }
+  render() {
+    return (
+      <>
+        <Header></Header>
+        <CategoryName>{this.category}</CategoryName>
+        {/* <PageContainer>{props.children}</PageContainer> */}
+      </>
+    );
+  }
+}
 
 export default Layout;
 
