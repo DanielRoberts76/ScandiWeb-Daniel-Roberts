@@ -6,10 +6,14 @@ import { widths, unit } from "./styles";
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { selectedCategory: "" };
     this.submitForm = this.submitForm.bind(this);
     this.category = "test";
   }
+
+  handleCategoryChange = (newCategory) => {
+    this.setState({ selectedCategory: newCategory });
+  };
 
   submitForm(values) {
     this.setState({ values });
@@ -17,8 +21,8 @@ class Layout extends Component {
   render() {
     return (
       <>
-        <Header></Header>
-        <CategoryName>{this.category}</CategoryName>
+        <Header changeSelectedCategory={this.handleCategoryChange}></Header>
+        <CategoryName>{this.state.selectedCategory}</CategoryName>
         {/* <PageContainer>{props.children}</PageContainer> */}
       </>
     );
