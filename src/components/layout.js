@@ -6,14 +6,13 @@ import { widths, unit } from "./styles";
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedCategory: "" };
+    this.state = { selectedCategory: "All" };
     this.submitForm = this.submitForm.bind(this);
   }
 
   handleCategoryChange = (newCategory) => {
-    console.log(newCategory, "newCategory");
     this.setState({ selectedCategory: newCategory });
-    this.props.propogateSelectedCategoryToAppJs(newCategory);
+    this.props.handleParentFunction(newCategory);
   };
 
   submitForm(values) {
