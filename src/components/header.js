@@ -34,12 +34,10 @@ class Header extends Component {
             TECH
           </CategoryButton>
         </CategoryContainer>
-        <Container>
-          <CategoryContainer></CategoryContainer>
-          <LogoContainer>
-            <Logo src={logo} />
-          </LogoContainer>
-        </Container>
+        <CategoryContainer></CategoryContainer>
+        <LogoContainer>
+          <Logo src={logo} />
+        </LogoContainer>
         <ActionBar>
           <CartButton src={CartIcon2} />
           <CurrencyButton src={dollarsign} />
@@ -52,60 +50,47 @@ class Header extends Component {
 export default Header;
 
 const HeaderBar = styled.div({
+  flex: 1,
   display: "flex",
   flexDirection: "row",
-  padding: "20px 25px",
-  minHeight: 80,
+  padding: "20px",
   backgroundColor: "white",
-});
-
-const Container = styled.div({
-  width: `${widths.regularPageWidth}px`,
-  display: "flex",
-  flex: 1,
-  flexDirection: "row",
-  flexWrap: "wrap",
-});
-
-const LogoContainer = styled.div({
-  display: "flex",
-  flex: 1,
-  flexDirection: "row",
-  flexWrap: "wrap",
-  alignSelf: "center",
-});
-
-const Logo = styled.img({
-  height: 40,
-  width: 40,
-  marginRight: 8,
-});
-
-const ActionBar = styled.div({
-  display: "flex",
-  flex: 1,
-  flexDirection: "row",
-  flexWrap: "wrap",
-  alignSelf: "right",
-});
-
-const CartButton = styled.img({
-  height: 40,
-  width: 40,
-});
-
-const CurrencyButton = styled.img({
-  height: 40,
-  width: 40,
 });
 
 const CategoryButton = styled.div({
   flex: 1,
   flexDirection: "row",
-  flexWrap: "wrap",
   backgroundColor: "lightblue",
-  maxWidth: 100,
+  maxWidth: 200,
   maxHeight: 50,
+  padding: "30px 3` 0px",
+});
+
+const LogoContainer = styled.div({
+  flex: 1,
+  flexWrap: "wrap",
+  alignSelf: "center",
+});
+
+const Logo = styled.img({
+  height: "50px",
+  width: "19%",
+});
+
+const ActionBar = styled.div({
+  flex: 1,
+  alignItems: "right",
+  marginLeft: "20px",
+});
+
+const CartButton = styled.img({
+  height: "70%",
+  width: "10%",
+});
+
+const CurrencyButton = styled.img({
+  height: "70%",
+  width: "10%",
 });
 
 const CategoryContainer = styled.div({
