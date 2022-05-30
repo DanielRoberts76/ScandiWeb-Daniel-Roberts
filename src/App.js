@@ -1,4 +1,3 @@
-import "./App.css";
 import React from "react";
 import Layout from "./components/layout";
 import QueryResult from "./components/query-result";
@@ -19,11 +18,14 @@ export const GET_PRODUCTS = gql`
   }
 `;
 
-// const handleCategorySelect = (event) => populateCategory(event.target.value);
+// handleCategoryChange = (newCategory) => {
+//   this.setState({ selectedCategory: newCategory });
+// };
 
 const Product = ({ category }) => {
   var selectedCategory = "tech";
   function populateCategory(selectedCategory) {
+    console.log("selectedCategory", selectedCategory);
     category = selectedCategory;
     refetch({
       category: {
@@ -38,7 +40,11 @@ const Product = ({ category }) => {
   });
 
   return (
-    <Layout grid category={selectedCategory}>
+    <Layout
+      propogateSelectedCategoryToAppJs={populateCategory("clothes")}
+      grid
+      category={selectedCategory}
+    >
       <QueryResult error={error} loading={loading} data={data}>
         {data?.category?.products.map((product) => (
           <ProductCard key={product.id} product={product} />

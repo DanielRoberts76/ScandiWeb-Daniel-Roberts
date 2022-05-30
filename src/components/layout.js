@@ -8,11 +8,12 @@ class Layout extends Component {
     super(props);
     this.state = { selectedCategory: "" };
     this.submitForm = this.submitForm.bind(this);
-    this.category = "test";
   }
 
   handleCategoryChange = (newCategory) => {
+    console.log(newCategory, "newCategory");
     this.setState({ selectedCategory: newCategory });
+    this.props.propogateSelectedCategoryToAppJs(newCategory);
   };
 
   submitForm(values) {
@@ -23,7 +24,7 @@ class Layout extends Component {
       <>
         <Header changeSelectedCategory={this.handleCategoryChange}></Header>
         <CategoryName>{this.state.selectedCategory}</CategoryName>
-        {/* <PageContainer>{props.children}</PageContainer> */}
+        <PageContainer>{this.props.children}</PageContainer>
       </>
     );
   }
@@ -46,10 +47,12 @@ const PageContainer = styled.div((props) => ({
 
 const CategoryName = styled.div((props) => ({
   flex: 1,
+  flexDirection: "column",
   width: "100%",
   alignSelf: "left",
   marginLeft: "15%;",
   marginTop: "5%",
   marginBottom: "5%",
-  fontSize: 32,
+  fontSize: 40,
+  textTransform: "capitalize",
 }));
