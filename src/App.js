@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "./components/layout";
 import QueryResult from "./components/query-result";
 import { useQuery, gql } from "@apollo/client";
 import ProductCard from "./components/product-card";
-import styled from "@emotion/styled";
 
 export const GET_PRODUCTS = gql`
   query getProducts($category: CategoryInput) {
@@ -18,14 +17,10 @@ export const GET_PRODUCTS = gql`
   }
 `;
 
-// handleCategoryChange = (newCategory) => {
-//   this.setState({ selectedCategory: newCategory });
-// };
-
 const Product = ({ category }) => {
-  var selectedCategory = "tech";
+  var selectedCategory = "clothes";
+  // const [selectedCategory2, setSelectedCategory2] = useState("clothes");
   function populateCategory(selectedCategory) {
-    console.log("selectedCategory", selectedCategory);
     category = selectedCategory;
     refetch({
       category: {
@@ -41,7 +36,9 @@ const Product = ({ category }) => {
 
   return (
     <Layout
-      propogateSelectedCategoryToAppJs={populateCategory("clothes")}
+      handleParentFunction={(value) => {
+        populateCategory(value);
+      }}
       grid
       category={selectedCategory}
     >
