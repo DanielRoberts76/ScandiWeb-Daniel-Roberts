@@ -2,17 +2,21 @@ import React from "react";
 import styled from "@emotion/styled";
 import { colors, mq } from "./styles";
 
-const ProductCard = ({ product }) => {
-  const { name, gallery } = product;
+const ProductCard = ({ product, selectedPricingIndex }) => {
+  const { name, gallery, prices } = product;
 
   return (
     <CardContainer>
       <CardContent>
         <CardImageContainer>
-          <CardImage src={gallery} alt={name} />
+          <CardImage src={gallery[0]} alt={name} />
         </CardImageContainer>
         <CardBody>
-          <CardTitle>{name || ""}</CardTitle>
+          <ProductTitle>{name || ""}</ProductTitle>
+          <ProductPrice>
+            {prices[selectedPricingIndex].currency.symbol}{" "}
+            {prices[selectedPricingIndex].amount}
+          </ProductPrice>
         </CardBody>
       </CardContent>
     </CardContainer>
@@ -22,7 +26,6 @@ const ProductCard = ({ product }) => {
 export default ProductCard;
 
 const CardContainer = styled.div({
-  color: colors.text,
   backgroundSize: "cover",
   backgroundColor: "white",
   backgroundPosition: "center",
@@ -52,16 +55,25 @@ const CardContent = styled.div({
   height: "100%",
 });
 
-const CardTitle = styled.h3({
+const ProductPrice = styled.h3({
+  textAlign: "center",
+  fontSize: "1.4em",
+  fontWeight: 400,
+  color: colors.text,
+  flex: 1,
+});
+
+const ProductTitle = styled.h3({
   textAlign: "center",
   fontSize: "1.4em",
   lineHeight: "1em",
-  fontWeight: 700,
+  fontWeight: 400,
   color: colors.text,
   flex: 1,
 });
 
 const CardImageContainer = styled.div({
+  elevation: 5,
   height: 220,
   position: "relative",
   "::after": {
@@ -71,12 +83,11 @@ const CardImageContainer = styled.div({
     bottom: 0,
     left: 0,
     right: 0,
-    background: "rgba(250,0,150,0.20)",
   },
 });
 
 const CardImage = styled.img({
-  objectFit: "cover",
+  objectFit: "fill",
   width: "100%",
   height: "100%",
 });
