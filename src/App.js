@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import "./index.css";
 import Layout from "./components/layout";
 import QueryResult from "./components/query-result";
 import { useQuery, gql } from "@apollo/client";
@@ -12,14 +13,39 @@ export const GET_PRODUCTS = gql`
         name
         gallery
         category
+        prices {
+          amount
+          currency {
+            label
+            symbol
+          }
+        }
       }
+    }
+  }
+`;
+
+export const GET_CURRENCIES = gql`
+  query getCurrencies {
+    currencies {
+      label
+      symbol
     }
   }
 `;
 
 const Product = ({ category }) => {
   var selectedCategory = "clothes";
-  // const [selectedCategory2, setSelectedCategory2] = useState("clothes");
+  var selectedCurrencyIndex = 1;
+  function selectCurrency(selectedCurrency) {
+    selectedCurrencyIndex = selectedCurrency;
+    refetch({
+      category: {
+        title: selectedCategory,
+      },
+    });
+  }
+
   function populateCategory(selectedCategory) {
     category = selectedCategory;
     refetch({
@@ -30,21 +56,51 @@ const Product = ({ category }) => {
     });
   }
 
-  const { loading, error, data, refetch } = useQuery(GET_PRODUCTS, {
+  const {
+    loading: productLoading,
+    error: productError,
+    data: productData,
+    refetch,
+  } = useQuery(GET_PRODUCTS, {
     variables: { selectedCategory },
   });
 
+  const {
+    loading: currencyLoading,
+    error: currencyError,
+    data: currencyData,
+  } = useQuery(GET_CURRENCIES);
+  if (currencyLoading) {
+    return "loading...";
+  }
+  if (currencyError) {
+    return "shit dawg";
+  }
+
   return (
     <Layout
+      href="https://fonts.googleapis.com/css2?family=Raleway"
       handleParentFunction={(value) => {
         populateCategory(value);
       }}
+      handleSelectCurrency={(value) => {
+        selectCurrency(value);
+      }}
       grid
       category={selectedCategory}
+      currencyData={currencyData}
     >
-      <QueryResult error={error} loading={loading} data={data}>
-        {data?.category?.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+      <QueryResult
+        error={productError}
+        loading={productLoading}
+        data={productData}
+      >
+        {productData?.category?.products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            selectedPricingIndex={selectedCurrencyIndex}
+          />
         ))}
       </QueryResult>
     </Layout>

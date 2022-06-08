@@ -12,7 +12,7 @@ export const widths = {
 };
 export const colors = {
   primary: "grey",
-  secondary: "black",
+  secondary: "#5ECE7B",
   accent: "white",
   background: "silver",
   text: "black",

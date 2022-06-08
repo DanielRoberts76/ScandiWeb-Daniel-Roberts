@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { widths } from "./styles";
-import styled from "@emotion/styled";
 import logo from "../assets/a_logo.png";
 import CartIcon2 from "../assets/CartIcon2.png";
 import dollarsign from "../assets/dollarsign.png";
+import classes from "./header.modules.css";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { openModal: false };
   }
+
+  openCart = (event) => {
+    this.props.cartSelected(event);
+  };
+
+  handleSelectCurrency = ({ target }) => {
+    this.props.selectCurrency(target.value);
+  };
 
   populateCategory = (event) => {
     this.props.changeSelectedCategory(event);
@@ -17,83 +24,56 @@ class Header extends Component {
 
   render() {
     return (
-      <HeaderBar>
-        <CategoryContainer>
-          <CategoryButton
-            onClick={() => {
-              this.populateCategory("clothes");
-            }}
-          >
-            CLOTHES
-          </CategoryButton>
-          <CategoryButton
-            onClick={() => {
-              this.populateCategory("tech");
-            }}
-          >
-            TECH
-          </CategoryButton>
-        </CategoryContainer>
-        <CategoryContainer></CategoryContainer>
-        <LogoContainer>
-          <Logo src={logo} />
-        </LogoContainer>
-        <ActionBar>
-          <CartButton src={CartIcon2} />
-          <CurrencyButton src={dollarsign} />
-        </ActionBar>
-      </HeaderBar>
+      <>
+        <div class="HeaderBar">
+          <div class="CategoryContainer">
+            <div
+              class="CategoryButton"
+              onClick={() => {
+                this.populateCategory("clothes");
+              }}
+            >
+              CLOTHES
+            </div>
+            <div
+              class="CategoryButton"
+              onClick={() => {
+                this.populateCategory("tech");
+              }}
+            >
+              TECH
+            </div>
+          </div>
+          <div class="HeaderBar">
+            <button class="Logo">
+              <img src={logo} alt={" "}></img>
+            </button>
+          </div>
+          <div class="ActionBar">
+            <button
+              class="CartButton"
+              onClick={() => {
+                this.openCart("test");
+              }}
+              src={CartIcon2}
+            >
+              cart
+            </button>
+            <select class="CurrencyButton" onChange={this.handleSelectCurrency}>
+              {" "}
+              {this.props.currencyData.currencies.map(
+                ({ symbol, label }, index) => (
+                  <option key={index} value={index}>
+                    {symbol + " " + label}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        </div>
+      </>
     );
   }
 }
 
 export default Header;
-
-const HeaderBar = styled.div({
-  flex: 1,
-  display: "flex",
-  flexDirection: "row",
-  padding: "20px",
-  backgroundColor: "white",
-});
-
-const CategoryButton = styled.div({
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: "lightblue",
-  maxWidth: 200,
-  maxHeight: 50,
-  padding: "30px 3` 0px",
-});
-
-const LogoContainer = styled.div({
-  flex: 1,
-  flexWrap: "wrap",
-  alignSelf: "center",
-});
-
-const Logo = styled.img({
-  height: "50px",
-  width: "19%",
-});
-
-const ActionBar = styled.div({
-  flex: 1,
-  alignItems: "right",
-  marginLeft: "20px",
-});
-
-const CartButton = styled.img({
-  height: "70%",
-  width: "10%",
-});
-
-const CurrencyButton = styled.img({
-  height: "70%",
-  width: "10%",
-});
-
-const CategoryContainer = styled.div({
-  display: "flex",
-  flex: 1,
-});
