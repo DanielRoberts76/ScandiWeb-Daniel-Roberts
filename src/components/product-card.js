@@ -1,36 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { colors, mq } from "./styles";
 
-const ProductCard = ({ product, selectedCurrencyIndex }) => {
-  const { name, gallery, prices } = product;
-
-  function viewProduct(selectedProduct) {
-    console.log(selectedProduct, "Selected Product");
-    return <div>we have moved</div>;
+class ProductCard extends Component {
+  constructor(props) {
+    super(props);
   }
+  viewProduct = (selectedProduct) => {};
 
-  return (
-    <CardContainer>
-      <CardContent>
-        <CardImageContainer
-          onClick={() => {
-            viewProduct(product);
-          }}
-        >
-          <CardImage src={gallery[0]} alt={name} />
-        </CardImageContainer>
-        <CardBody>
-          <ProductTitle>{name || ""}</ProductTitle>
-          <ProductPrice>
-            {prices[selectedCurrencyIndex].currency.symbol}{" "}
-            {prices[selectedCurrencyIndex].amount}
-          </ProductPrice>
-        </CardBody>
-      </CardContent>
-    </CardContainer>
-  );
-};
+  render() {
+    return (
+      <CardContainer>
+        <CardContent>
+          <CardImageContainer
+            onClick={() => {
+              this.viewProduct(this.props.product);
+            }}
+          >
+            <CardImage
+              src={this.props.product.gallery[0]}
+              alt={this.props.product.name}
+            />
+          </CardImageContainer>
+          <CardBody>
+            <ProductTitle>{this.props.product.name || ""}</ProductTitle>
+            <ProductPrice>
+              {
+                this.props.product.prices[this.props.selectedCurrencyIndex]
+                  .currency.symbol
+              }{" "}
+              {
+                this.props.product.prices[this.props.selectedCurrencyIndex]
+                  .amount
+              }
+            </ProductPrice>
+          </CardBody>
+        </CardContent>
+      </CardContainer>
+    );
+  }
+}
 
 export default ProductCard;
 
