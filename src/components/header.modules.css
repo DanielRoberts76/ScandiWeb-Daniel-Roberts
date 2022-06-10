@@ -1,0 +1,65 @@
+.HeaderBar {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  padding: 15px 100px 0px;
+  background-color: white;
+  max-height: 50px;
+}
+
+.CategoryButton {
+  flex: 1;
+  padding: 20px 0px 50px;
+  font-family: Raleway;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2em;
+  line-height: 120%;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-bottom-color: white;
+}
+
+.CategoryButton:hover {
+  border-style: solid;
+  border-width: 0px 0px 2px 0px;
+  border-bottom-color: #5ece7b;
+}
+
+.LogoContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.Logo {
+  flex: 1;
+  object-fit: contain;
+  height: 50px;
+  border: none;
+  background: none;
+}
+
+.ActionBar {
+  flex: 1;
+  display: flex;
+  height: 50px;
+  align-items: right;
+}
+
+.CartButton {
+  flex: 1;
+  object-fit: contain;
+}
+
+.CurrencyButton {
+  flex: 1;
+  object-fit: contain;
+}
+
+.CategoryContainer {
+  display: flex;
+  flex: 1;
+}

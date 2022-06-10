@@ -2,20 +2,29 @@ import React from "react";
 import styled from "@emotion/styled";
 import { colors, mq } from "./styles";
 
-const ProductCard = ({ product, selectedPricingIndex }) => {
+const ProductCard = ({ product, selectedCurrencyIndex }) => {
   const { name, gallery, prices } = product;
+
+  function viewProduct(selectedProduct) {
+    console.log(selectedProduct, "Selected Product");
+    return <div>we have moved</div>;
+  }
 
   return (
     <CardContainer>
       <CardContent>
-        <CardImageContainer>
+        <CardImageContainer
+          onClick={() => {
+            viewProduct(product);
+          }}
+        >
           <CardImage src={gallery[0]} alt={name} />
         </CardImageContainer>
         <CardBody>
           <ProductTitle>{name || ""}</ProductTitle>
           <ProductPrice>
-            {prices[selectedPricingIndex].currency.symbol}{" "}
-            {prices[selectedPricingIndex].amount}
+            {prices[selectedCurrencyIndex].currency.symbol}{" "}
+            {prices[selectedCurrencyIndex].amount}
           </ProductPrice>
         </CardBody>
       </CardContent>

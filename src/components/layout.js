@@ -38,11 +38,11 @@ class Layout extends Component {
     return (
       <>
         <Modal
-          class="Modal"
+          className="Modal"
           open={this.state.openModal}
           onClose={this.onCloseModal}
         >
-          <BagComponent class="BagComponent"></BagComponent>
+          <BagComponent className="BagComponent"></BagComponent>
         </Modal>
         <Header
           changeSelectedCategory={this.handleCategoryChange}
@@ -50,9 +50,8 @@ class Layout extends Component {
           currencyData={this.props.currencyData}
           cartSelected={this.handleCartSelected}
         ></Header>
-
-        <div class="CategoryName">{this.state.selectedCategory}</div>
-        <div class="PageContainer">{this.props.children}</div>
+        <div className="CategoryName">{this.state.selectedCategory}</div>
+        <div className="PageContainer">{this.props.children}</div>
       </>
     );
   }
