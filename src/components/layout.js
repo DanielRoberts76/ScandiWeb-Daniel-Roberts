@@ -9,6 +9,7 @@ class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      page: 0,
       selectedCategory: "All",
       openModal: false,
     };
@@ -35,6 +36,24 @@ class Layout extends Component {
     this.setState({ values });
   }
   render() {
+    let showThis;
+    if (this.state.page === 0) {
+      showThis = (
+        <div className="ProductListContainer">
+          <div className="CategoryName">{this.state.selectedCategory}</div>
+          <div className="PageContainer">{this.props.children}</div>
+        </div>
+      );
+    }
+    if (this.state.page === 1) {
+      showThis = (
+        <div className="ProductDisplayPageContainer">
+          <div>
+            <h3>We will display our product here</h3>
+          </div>
+        </div>
+      );
+    }
     return (
       <>
         <Modal
@@ -49,9 +68,8 @@ class Layout extends Component {
           selectCurrency={this.handleSelectCurrency}
           currencyData={this.props.currencyData}
           cartSelected={this.handleCartSelected}
-        ></Header>
-        <div className="CategoryName">{this.state.selectedCategory}</div>
-        <div className="PageContainer">{this.props.children}</div>
+        ></Header>{" "}
+        {showThis}
       </>
     );
   }
