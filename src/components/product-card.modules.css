@@ -1,0 +1,75 @@
+.CardContainer {
+  background-size: cover;
+  background-color: white;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* [mq[0]]: {
+      width: "90%",
+    },
+    [mq[1]]: {
+      width: "47%",
+    },
+    [mq[2]]: {
+      width: "24%",
+    }, */
+  height: 380;
+  margin: 25;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.CardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.ProductPrice {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: black;
+  flex: 1;
+}
+
+.ProductTitle {
+  text-align: center;
+  font-size: 1.4em;
+  line-height: 1em;
+  font-weight: 400;
+  color: black;
+  flex: 1;
+}
+
+.CardImageContainer {
+  z-index: 5;
+  height: 220;
+  position: relative;
+  /* "::after": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    }, */
+}
+
+.CardImage {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+.CardBody {
+  padding: 18;
+  flex: 1;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  justify-content: space-around;
+}

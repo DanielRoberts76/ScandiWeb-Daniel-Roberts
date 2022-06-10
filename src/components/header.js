@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "../assets/a_logo.png";
 import CartIcon2 from "../assets/CartIcon2.png";
-import dollarsign from "../assets/dollarsign.png";
 import classes from "./header.modules.css";
 
 class Header extends Component {
@@ -25,10 +24,10 @@ class Header extends Component {
   render() {
     return (
       <>
-        <div class="HeaderBar">
-          <div class="CategoryContainer">
+        <div className="HeaderBar">
+          <div className="CategoryContainer">
             <div
-              class="CategoryButton"
+              className="CategoryButton"
               onClick={() => {
                 this.populateCategory("clothes");
               }}
@@ -36,7 +35,7 @@ class Header extends Component {
               CLOTHES
             </div>
             <div
-              class="CategoryButton"
+              className="CategoryButton"
               onClick={() => {
                 this.populateCategory("tech");
               }}
@@ -44,14 +43,14 @@ class Header extends Component {
               TECH
             </div>
           </div>
-          <div class="HeaderBar">
-            <button class="Logo">
+          <div className="HeaderBar">
+            <button className="Logo">
               <img src={logo} alt={" "}></img>
             </button>
           </div>
-          <div class="ActionBar">
+          <div className="ActionBar">
             <button
-              class="CartButton"
+              className="CartButton"
               onClick={() => {
                 this.openCart("test");
               }}
@@ -59,7 +58,10 @@ class Header extends Component {
             >
               cart
             </button>
-            <select class="CurrencyButton" onChange={this.handleSelectCurrency}>
+            <select
+              className="CurrencyButton"
+              onChange={this.handleSelectCurrency}
+            >
               {" "}
               {this.props.currencyData.currencies.map(
                 ({ symbol, label }, index) => (

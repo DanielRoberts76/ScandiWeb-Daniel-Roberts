@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, setItem } from "react";
 import "./index.css";
 import Layout from "./components/layout";
 import QueryResult from "./components/query-result";
@@ -36,14 +36,11 @@ export const GET_CURRENCIES = gql`
 
 const Product = ({ category }) => {
   var selectedCategory = "clothes";
-  var selectedCurrencyIndex = 1;
+
+  const [selectedCurrencyIndex, setSelectedCurrencyIndex] = useState(0);
+
   function selectCurrency(selectedCurrency) {
-    selectedCurrencyIndex = selectedCurrency;
-    refetch({
-      category: {
-        title: selectedCategory,
-      },
-    });
+    setSelectedCurrencyIndex(selectedCurrency);
   }
 
   function populateCategory(selectedCategory) {
@@ -74,7 +71,7 @@ const Product = ({ category }) => {
     return "loading...";
   }
   if (currencyError) {
-    return "shit dawg";
+    return "$";
   }
 
   return (
@@ -99,7 +96,7 @@ const Product = ({ category }) => {
           <ProductCard
             key={product.id}
             product={product}
-            selectedPricingIndex={selectedCurrencyIndex}
+            selectedCurrencyIndex={selectedCurrencyIndex}
           />
         ))}
       </QueryResult>
