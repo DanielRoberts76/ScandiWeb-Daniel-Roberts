@@ -54,9 +54,8 @@ class Header extends Component {
               onClick={() => {
                 this.openCart("test");
               }}
-              src={CartIcon2}
             >
-              cart
+              <img className="CartImage" src={CartIcon2} alt={" "}></img>
             </button>
             <select
               className="CurrencyButton"

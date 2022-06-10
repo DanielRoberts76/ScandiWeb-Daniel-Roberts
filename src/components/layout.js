@@ -4,17 +4,32 @@ import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import BagComponent from "./bag-component";
 import classes from "./layout.modules.css";
+import SizeWidget from "./size-widget";
+import ColorWidget from "./color-widget";
 
 class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 0,
+      isSelectedProduct: false,
       selectedCategory: "All",
       openModal: false,
+      selectedProduct: null,
     };
     this.submitForm = this.submitForm.bind(this);
   }
+
+  // handleViewProduct = (selectedProduct) => {
+  //   console.log("here!");
+  //   this.setState({
+  //     isSelectedProduct: selectedProduct != null,
+  //     selectedProduct: selectedProduct,
+  //   });
+  // };
+
+  switchGallery = () => {
+    console.log("selectedImage");
+  };
 
   handleCartSelected = () => {
     this.setState({ openModal: true });
@@ -37,7 +52,7 @@ class Layout extends Component {
   }
   render() {
     let showThis;
-    if (this.state.page === 0) {
+    if (this.props.selectedProduct === null) {
       showThis = (
         <div className="ProductListContainer">
           <div className="CategoryName">{this.state.selectedCategory}</div>
@@ -45,11 +60,39 @@ class Layout extends Component {
         </div>
       );
     }
-    if (this.state.page === 1) {
+    if (this.props.selectedProduct != null) {
       showThis = (
         <div className="ProductDisplayPageContainer">
-          <div>
-            <h3>We will display our product here</h3>
+          <div className="PreviewContainer">
+            <img
+              className="PreviewImages"
+              onClick={this.switchGallery}
+              src={this.props.selectedProduct.gallery[1]}
+            ></img>
+            <img
+              className="PreviewImages"
+              onClick={this.switchGallery}
+              src={this.props.selectedProduct.gallery[2]}
+            ></img>
+            <img
+              className="PreviewImages"
+              onClick={this.switchGallery}
+              src={this.props.selectedProduct.gallery[3]}
+            ></img>
+          </div>
+          <img
+            className="ProductImage"
+            src={this.props.selectedProduct.gallery[0]}
+            alt={""}
+          ></img>
+          <div className="ProductBlurb">
+            <div className="PDPHeader">{this.props.selectedProduct.name}</div>
+
+            <SizeWidget></SizeWidget>
+            <ColorWidget></ColorWidget>
+            <div className="Pricing">
+              PRICE : {this.props.selectedProduct.prices[0].amount}
+            </div>
           </div>
         </div>
       );

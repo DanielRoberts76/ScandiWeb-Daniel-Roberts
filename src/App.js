@@ -38,6 +38,11 @@ const Product = ({ category }) => {
   var selectedCategory = "clothes";
 
   const [selectedCurrencyIndex, setSelectedCurrencyIndex] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  function parentViewProduct(selectedProduct) {
+    setSelectedProduct(selectedProduct);
+  }
 
   function selectCurrency(selectedCurrency) {
     setSelectedCurrencyIndex(selectedCurrency);
@@ -45,6 +50,8 @@ const Product = ({ category }) => {
 
   function populateCategory(selectedCategory) {
     category = selectedCategory;
+    setSelectedProduct(null);
+
     refetch({
       category: {
         title: selectedCategory,
@@ -86,6 +93,7 @@ const Product = ({ category }) => {
       grid
       category={selectedCategory}
       currencyData={currencyData}
+      selectedProduct={selectedProduct}
     >
       <QueryResult
         error={productError}
@@ -97,6 +105,7 @@ const Product = ({ category }) => {
             key={product.id}
             product={product}
             selectedCurrencyIndex={selectedCurrencyIndex}
+            viewProduct={parentViewProduct}
           />
         ))}
       </QueryResult>

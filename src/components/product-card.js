@@ -6,7 +6,9 @@ class ProductCard extends Component {
   constructor(props) {
     super(props);
   }
-  viewProduct = (selectedProduct) => {};
+  viewProduct = (selectedProduct) => {
+    this.props.viewProduct(selectedProduct);
+  };
 
   render() {
     return (

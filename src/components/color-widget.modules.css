@@ -1,0 +1,47 @@
+.ColorWidget {
+}
+
+.ColorWidgetHeader {
+  flex: 1;
+  font-size: 60%;
+}
+
+.ColorSelectorButton1:hover {
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #5ece7b;
+}
+.ColorSelectorButton2:hover {
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #5ece7b;
+}
+.ColorSelectorButton3:hover {
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #5ece7b;
+}
+
+.ColorSelectorButton1 {
+  background-color: silver;
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+  border-width: 1px;
+}
+
+.ColorSelectorButton2 {
+  background-color: black;
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+  border-width: 1px;
+}
+
+.ColorSelectorButton3 {
+  background-color: #006400;
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+  border-width: 1px;
+}
