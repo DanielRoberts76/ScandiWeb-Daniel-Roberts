@@ -9,7 +9,7 @@
 
 .CategoryButton {
   flex: 1;
-  padding: 20px 0px 50px;
+  padding: 20px 20px 30px 0px;
   font-family: Raleway;
   font-weight: 500;
   font-style: normal;
@@ -17,13 +17,14 @@
   line-height: 120%;
   cursor: pointer;
   border-style: solid;
-  border-width: 0px 0px 2px 0px;
+  border-width: 0px 0px 5px 0px;
   border-bottom-color: white;
 }
 
 .CategoryButton:hover {
   border-style: solid;
   border-width: 0px 0px 2px 0px;
+
   border-bottom-color: #5ece7b;
 }
 
@@ -36,7 +37,7 @@
 
 .Logo {
   flex: 1;
-  object-fit: contain;
+  margin-top: -5%;
   height: 50px;
   border: none;
   background: none;
@@ -51,12 +52,23 @@
 
 .CartButton {
   flex: 1;
-  object-fit: contain;
+  background: none;
+  border: none;
+  border-color: white;
+  margin-left: 60%;
+}
+
+.CartImage {
+  width: 20px;
+  height: 20px;
+  align-self: flex-end;
 }
 
 .CurrencyButton {
   flex: 1;
-  object-fit: contain;
+  text-align: end;
+  border-width: 0px;
+  max-width: 70px;
 }
 
 .CategoryContainer {

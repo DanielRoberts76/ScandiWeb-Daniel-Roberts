@@ -1,0 +1,29 @@
+.SelectorWidget {
+  margin: 20px 0px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.SizeWidgetHeader {
+  font-size: 60%;
+  margin: 10px 0px 10px 0px;
+}
+
+.SelectorButton:hover {
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #5ece7b;
+}
+
+.SelectorButton {
+  background-color: white;
+  border-radius: 2px;
+  border-width: 1px;
+  margin-right: 2px;
+  padding: 5px;
+  width: 30px;
+}
+.SizeSelectorPanel {
+  flex-direction: row;
+}
