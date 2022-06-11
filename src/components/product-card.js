@@ -5,6 +5,9 @@ import { colors, mq } from "./styles";
 class ProductCard extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isPreview: false,
+    };
   }
   viewProduct = (selectedProduct) => {
     this.props.viewProduct(selectedProduct);

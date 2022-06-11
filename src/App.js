@@ -94,6 +94,7 @@ const Product = ({ category }) => {
       category={selectedCategory}
       currencyData={currencyData}
       selectedProduct={selectedProduct}
+      selectedCurrencyIndex={selectedCurrencyIndex}
     >
       <QueryResult
         error={productError}

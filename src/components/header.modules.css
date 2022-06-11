@@ -68,6 +68,7 @@
   flex: 1;
   text-align: end;
   border-width: 0px;
+  outline: 0px;
   max-width: 70px;
 }
 

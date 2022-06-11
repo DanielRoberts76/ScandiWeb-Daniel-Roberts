@@ -3,10 +3,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 4%;
 }
 
 .SizeWidgetHeader {
-  font-size: 60%;
+  font-size: 70%;
   margin: 10px 0px 10px 0px;
 }
 
@@ -20,9 +21,9 @@
   background-color: white;
   border-radius: 2px;
   border-width: 1px;
-  margin-right: 2px;
+  margin-right: 10px;
   padding: 5px;
-  width: 30px;
+  width: 35px;
 }
 .SizeSelectorPanel {
   flex-direction: row;
