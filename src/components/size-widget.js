@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./size-widget.modules.css";
 
-class SizeSelector extends React.Component {
+class SizeWidget extends React.Component {
   render() {
     return (
       <div className="SelectorWidget">
@@ -17,4 +17,4 @@ class SizeSelector extends React.Component {
   }
 }
 
-export default SizeSelector;
+export default SizeWidget;

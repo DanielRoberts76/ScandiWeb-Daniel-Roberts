@@ -15,25 +15,26 @@ class Layout extends Component {
       selectedCategory: "All",
       openModal: false,
       selectedProduct: null,
+      selectedGalleryIndex: 0,
+      productsInCart: [],
     };
     this.submitForm = this.submitForm.bind(this);
   }
 
-  // handleViewProduct = (selectedProduct) => {
-  //   console.log("here!");
-  //   this.setState({
-  //     isSelectedProduct: selectedProduct != null,
-  //     selectedProduct: selectedProduct,
-  //   });
-  // };
+  addProductToCart = (selectedProduct) => {
+    let temporaryProductArray = this.state.productsInCart;
+    temporaryProductArray.push(selectedProduct);
+    this.setState({ productsInCart: temporaryProductArray });
+  };
 
-  switchGallery = () => {
-    console.log("selectedImage");
+  switchGallery = (selectedGalleryIndex) => {
+    this.setState({ selectedGalleryIndex: selectedGalleryIndex });
   };
 
   handleCartSelected = () => {
     this.setState({ openModal: true });
   };
+
   onCloseModal = () => {
     this.setState({ openModal: false });
   };
@@ -66,23 +67,41 @@ class Layout extends Component {
           <div className="PreviewContainer">
             <img
               className="PreviewImages"
-              onClick={this.switchGallery}
+              onClick={() => {
+                this.switchGallery(0);
+              }}
+              src={this.props.selectedProduct.gallery[0]}
+            ></img>
+
+            <img
+              className="PreviewImages"
+              onClick={() => {
+                this.switchGallery(1);
+              }}
               src={this.props.selectedProduct.gallery[1]}
             ></img>
             <img
               className="PreviewImages"
-              onClick={this.switchGallery}
+              onClick={() => {
+                this.switchGallery(2);
+              }}
               src={this.props.selectedProduct.gallery[2]}
             ></img>
             <img
               className="PreviewImages"
-              onClick={this.switchGallery}
+              onClick={() => {
+                this.switchGallery(3);
+              }}
               src={this.props.selectedProduct.gallery[3]}
             ></img>
           </div>
           <img
             className="ProductImage"
-            src={this.props.selectedProduct.gallery[0]}
+            src={
+              this.props.selectedProduct.gallery[
+                this.state.selectedGalleryIndex
+              ]
+            }
             alt={""}
           ></img>
           <div className="ProductBlurb">
@@ -90,8 +109,28 @@ class Layout extends Component {
 
             <SizeWidget></SizeWidget>
             <ColorWidget></ColorWidget>
-            <div className="Pricing">
-              PRICE : {this.props.selectedProduct.prices[0].amount}
+            <div className="PricingBox">
+              <div className="PriceHeader">PRICE : </div>
+              <div className="Price">
+                {
+                  this.props.selectedProduct.prices[
+                    this.props.selectedCurrencyIndex
+                  ].currency.symbol
+                }
+                {
+                  this.props.selectedProduct.prices[
+                    this.props.selectedCurrencyIndex
+                  ].amount
+                }
+              </div>
+              <button
+                onClick={() => {
+                  this.addProductToCart(this.props.selectedProduct);
+                }}
+                className="AddToCartButton"
+              >
+                ADD TO CART
+              </button>
             </div>
           </div>
         </div>
@@ -104,7 +143,11 @@ class Layout extends Component {
           open={this.state.openModal}
           onClose={this.onCloseModal}
         >
-          <BagComponent className="BagComponent"></BagComponent>
+          <BagComponent
+            selectedCurrencyIndex={this.props.selectedCurrencyIndex}
+            className="BagComponent"
+            productsInCart={this.state.productsInCart}
+          ></BagComponent>
         </Modal>
         <Header
           changeSelectedCategory={this.handleCategoryChange}
